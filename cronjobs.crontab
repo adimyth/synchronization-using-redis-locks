@@ -1,0 +1,1 @@
+* * * * * /usr/bin/python3 /app/sync.py 2>&1 | tee -a /var/log/cron.log

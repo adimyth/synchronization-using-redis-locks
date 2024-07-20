@@ -1,0 +1,16 @@
+services:
+    instance1:
+        build: .
+        network_mode: "host"
+        container_name: instance1
+        environment:
+            - INSTANCE_ID=1
+            - REDIS_HOST=host.docker.internal
+
+    instance2:
+        build: .
+        network_mode: "host"
+        container_name: instance2
+        environment:
+            - INSTANCE_ID=2
+            - REDIS_HOST=host.docker.internal
