@@ -154,3 +154,19 @@ return 1
 * [How Distributed Lock works | ft Redis | System Design](https://www.youtube.com/watch?v=qY4MfWv01pI)
 * [Distributed Locks with Redis](https://redis.io/docs/latest/develop/use/patterns/distributed-locks/)
 * 🔥 [redis-py Implementation](https://github.com/redis/redis-py/blob/master/redis/lock.py)
+
+## TODOs
+### Granular Control
+The sync script runs at one particular time & it triggers all the APIs/Scripts at the same time. This is not ideal. Example -
+
+```bash
+30 5 * * * /usr/bin/curl --request GET https://official-joke-api.appspot.com/random_joke
+30 6 * * * /usr/bin/curl --request GET https://catfact.ninja/fact
+30 7 * * * /usr/bin/curl --request GET https://ipapi.co/json/
+```
+
+Here, I want to run the 3 APIs at different times. I can't do this with the current setup. Currently, the sync script runs at a set time & executes all the APIs at the same time.
+
+I need to change the cron job to run the sync script at different times & then the sync script should trigger the APIs at different times.
+
+### State Maintenance
